@@ -32,6 +32,7 @@ const help = chalk`
     --config          A path to a webpack config file
     --config.\{name\}   A path to a webpack config file, and the config name to run
     --help            Displays this message
+    --require         Preload passed script before running config, eg. --require=@babel/register
     --silent          Instruct the CLI to produce no console output
     --version         Displays webpack-nano and webpack versions
 

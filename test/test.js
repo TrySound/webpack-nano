@@ -25,25 +25,35 @@ test('--config.name', async (t) => {
 });
 
 test('esm', async (t) => {
-  const { stderr } = await run('--config', 'webpack.config.esm.js');
+  const { stderr } = await run('--config', 'webpack.config.esm.js', '--require', 'esm');
   t.truthy(stderr.includes('esm'));
   t.truthy(stderr.includes('⬡ webpack: Build Finished'));
 });
 
 test('esm default export', async (t) => {
-  const { stderr } = await run('--config', 'webpack.config-default.esm.js');
+  const { stderr } = await run('--config', 'webpack.config-default.esm.js', '--require', 'esm');
   t.truthy(stderr.includes('esm-default'));
   t.truthy(stderr.includes('⬡ webpack: Build Finished'));
 });
 
 test('babel', async (t) => {
-  const { stderr } = await run('--config', 'webpack.config.babel.js');
+  const { stderr } = await run(
+    '--config',
+    'webpack.config.babel.js',
+    '--require',
+    '@babel/register'
+  );
   t.truthy(stderr.includes('babel'));
   t.truthy(stderr.includes('⬡ webpack: Build Finished'));
 });
 
 test('babel default export', async (t) => {
-  const { stderr } = await run('--config', 'webpack.config-default.babel.js');
+  const { stderr } = await run(
+    '--config',
+    'webpack.config-default.babel.js',
+    '--require',
+    '@babel/register'
+  );
   t.truthy(stderr.includes('babel-default'));
   t.truthy(stderr.includes('⬡ webpack: Build Finished'));
 });
@@ -81,7 +91,7 @@ test('bail', async (t) => {
 });
 
 test('es6', async (t) => {
-  const { stderr } = await run('--config', 'webpack.config.es6');
+  const { stderr } = await run('--config', 'webpack.config.es6', '--require', '@babel/register');
   t.truthy(stderr.includes('es6'));
   t.truthy(stderr.includes('⬡ webpack: Build Finished'));
 });
